@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Billa Nikila | Frontend-leaning SDE Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Portfolio of Billa Nikila, B.Tech Engineering Physics at IIT Hyderabad, frontend-leaning Software Development Engineer with experience in React, QML, C++, and data-driven projects." />
+  <meta name="keywords" content="Billa Nikila, IIT Hyderabad, frontend developer, QML, React, C++, software development engineer, portfolio" />
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #020617;
+      --bg-alt: #020617;
+      --accent: #6366f1;
+      --accent-2: #a855f7;
+      --accent-3: #ec4899;
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --card-bg: #020617;
+      --border-soft: rgba(148, 163, 184, 0.25);
+      --radius-lg: 1.5rem;
+      --radius-md: 0.9rem;
+      --shadow-soft: 0 22px 55px rgba(15, 23, 42, 0.95);
+      --nav-height: 70px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background:
+        radial-gradient(circle at 0% 0%, #1d234e 0, transparent 55%),
+        radial-gradient(circle at 100% 0%, #4b164c 0, transparent 55%),
+        radial-gradient(circle at 50% 100%, #1e293b 0, #020617 55%);
+      color: var(--text-main);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    section {
+      padding: 4.5rem 0;
+    }
+
+    h1, h2, h3 {
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    .section-subtitle {
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+
+    .section-title {
+      font-size: 1.9rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .section-description {
+      max-width: 650px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+    }
+
+    /* NAVBAR */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(22px);
+      background: linear-gradient(to bottom, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.7), transparent);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+    }
+
+    .nav {
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-weight: 600;
+    }
+
+    .nav-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      background: conic-gradient(from 160deg, #4f46e5, #a855f7, #ec4899, #f97316, #4f46e5);
+      display: grid;
+      place-items: center;
+      font-size: 0.9rem;
+      box-shadow: 0 10px 30px rgba(94, 92, 246, 0.7);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding-bottom: 0.15rem;
+      color: #cbd5f5;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(to right, #4f46e5, #a855f7, #ec4899);
+      transition: width 0.25s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      padding: 0.45rem 0.95rem;
+      border-radius: 999px;
+      border: 1px solid rgba(129, 140, 248, 0.8);
+      font-size: 0.8rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: radial-gradient(circle at top left, rgba(79, 70, 229, 0.5), rgba(15, 23, 42, 1));
+      box-shadow: 0 14px 32px rgba(79, 70, 229, 0.5);
+    }
+
+    .nav-toggle {
+      display: none;
+      width: 26px;
+      height: 26px;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .nav-toggle span {
+      height: 3px;
+      border-radius: 999px;
+      background: #e5e7eb;
+    }
+
+    .mobile-nav {
+      display: none;
+      position: absolute;
+      top: var(--nav-height);
+      left: 0;
+      right: 0;
+      background: #020617;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+    }
+
+    .mobile-nav.open {
+      display: block;
+    }
+
+    .mobile-nav-inner {
+      padding: 0.7rem 1.25rem 1.25rem;
+      font-size: 0.9rem;
+    }
+
+    .mobile-nav-inner a {
+      display: block;
+      padding: 0.4rem 0;
+      color: var(--text-muted);
+    }
+
+    .mobile-nav-inner a:hover {
+      color: var(--accent);
+    }
+
+    @media (max-width: 780px) {
+      .nav-links,
+      .nav-cta {
+        display: none;
+      }
+      .nav-toggle {
+        display: flex;
+      }
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: calc(100vh - var(--nav-height));
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1.8fr) minmax(0, 1.4fr);
+      gap: 3rem;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .hero-inner {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 2.5rem;
+        padding-top: 1.5rem;
+      }
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.25rem 0.65rem 0.25rem 0.25rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.65);
+      margin-bottom: 0.9rem;
+      backdrop-filter: blur(20px);
+    }
+
+    .hero-badge-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #22c55e, #15803d);
+      box-shadow: 0 0 18px rgba(34, 197, 94, 0.9);
+    }
+
+    .hero-title {
+      font-size: clamp(2.3rem, 4vw, 3.1rem);
+      margin-bottom: 0.7rem;
+    }
+
+    .hero-title span {
+      background: linear-gradient(to right, #4f46e5, #a855f7, #ec4899);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-tagline {
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+      max-width: 640px;
+    }
+
+    .hero-tagline strong {
+      color: #e5e7ff;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-bottom: 1.7rem;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.65rem 1.25rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      border: 1px solid transparent;
+      background: none;
+      outline: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #4f46e5, #a855f7, #ec4899);
+      box-shadow: 0 16px 40px rgba(79, 70, 229, 0.7);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.06);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      border-color: rgba(148, 163, 184, 0.75);
+      background: rgba(15, 23, 42, 0.92);
+    }
+
+    .btn-ghost:hover {
+      border-color: rgba(129, 140, 248, 0.95);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.4rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .hero-meta span {
+      display: block;
+      font-size: 0.9rem;
+      color: var(--text-main);
+      font-weight: 600;
+      letter-spacing: 0.1em;
+    }
+
+    .hero-avatar-card {
+      position: relative;
+      border-radius: var(--radius-lg);
+      padding: 1.4rem;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(79, 70, 229, 0.4), transparent 55%),
+        radial-gradient(circle at 100% 0%, rgba(236, 72, 153, 0.4), transparent 55%),
+        rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
+
+    .hero-avatar-circle {
+      width: 190px;
+      height: 190px;
+      border-radius: 50%;
+      margin: 0 auto;
+      background: conic-gradient(from 160deg, #4f46e5, #22c55e, #f97316, #ec4899, #4f46e5);
+      padding: 4px;
+      display: grid;
+      place-items: center;
+    }
+
+    .hero-avatar-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 20%, #020617, #020617, #020617);
+      display: grid;
+      place-items: center;
+      font-size: 3rem;
+      font-weight: 700;
+    }
+
+    .hero-avatar-tag {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.2rem;
+      font-size: 0.72rem;
+      padding: 0.28rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.92);
+      border: 1px solid rgba(129, 140, 248, 0.85);
+    }
+
+    .hero-avatar-footer {
+      margin-top: 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 1.2rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .hero-avatar-footer strong {
+      color: var(--text-main);
+    }
+
+    /* ABOUT & EXPERIENCE */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
+      gap: 2rem;
+      align-items: start;
+    }
+
+    @media (max-width: 920px) {
+      .about-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .card {
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-soft);
+      padding: 1.35rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      font-size: 0.75rem;
+      margin: 0.1rem 0.1rem 0 0;
+      color: var(--text-muted);
+    }
+
+    .about-highlight-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem;
+      margin-top: 1rem;
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 620px) {
+      .about-highlight-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .about-chip {
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      padding: 0.6rem 0.75rem;
+    }
+
+    .about-chip span {
+      display: block;
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.15rem;
+    }
+
+    .timeline-item {
+      margin-bottom: 0.9rem;
+      font-size: 0.9rem;
+    }
+
+    .timeline-title {
+      font-weight: 600;
+      font-size: 0.92rem;
+    }
+
+    .timeline-meta {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .timeline-list {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-left: 1rem;
+      margin-top: 0.2rem;
+    }
+
+    .timeline-list li + li {
+      margin-top: 0.15rem;
+    }
+
+    /* SKILLS */
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    @media (max-width: 900px) {
+      .skills-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 620px) {
+      .skills-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .skill-card {
+      background: rgba(15, 23, 42, 0.95);
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      padding: 0.9rem 1rem;
+      font-size: 0.86rem;
+    }
+
+    .skill-card-title {
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .skill-tags span {
+      padding: 0.12rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      background: rgba(15, 23, 42, 1);
+    }
+
+    /* PROJECTS */
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.3rem;
+    }
+
+    @media (max-width: 1040px) {
+      .projects-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      .projects-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .project-card {
+      background: rgba(15, 23, 42, 0.97);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(15, 23, 42, 0.98);
+      border-color: rgba(129, 140, 248, 0.95);
+    }
+
+    .project-thumb {
+      height: 150px;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(79, 70, 229, 0.6), transparent 50%),
+        radial-gradient(circle at 100% 100%, rgba(236, 72, 153, 0.6), transparent 50%),
+        #020617;
+      display: grid;
+      place-items: center;
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .project-body {
+      padding: 0.9rem 1rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      font-size: 0.86rem;
+    }
+
+    .project-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .project-tags span {
+      padding: 0.1rem 0.5rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      background: rgba(15, 23, 42, 1);
+    }
+
+    .project-links {
+      margin-top: 0.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      font-size: 0.78rem;
+    }
+
+    .project-links a {
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      color: var(--text-muted);
+    }
+
+    .project-links a:hover {
+      border-color: rgba(129, 140, 248, 0.95);
+      color: var(--accent);
+    }
+
+    /* ACHIEVEMENTS / EXTRA */
+
+    .two-col-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.2fr);
+      gap: 1.6rem;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .two-col-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .list-compact {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      padding-left: 1rem;
+    }
+
+    .list-compact li + li {
+      margin-top: 0.35rem;
+    }
+
+    /* CONTACT & FOOTER */
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.1fr);
+      gap: 1.8rem;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .contact-info-list {
+      list-style: none;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .contact-info-list li + li {
+      margin-top: 0.7rem;
+    }
+
+    .contact-info-list span {
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .social-links {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+    }
+
+    .social-links a {
+      padding: 0.28rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      color: var(--text-muted);
+    }
+
+    .social-links a:hover {
+      border-color: rgba(129, 140, 248, 0.95);
+      color: var(--accent);
+    }
+
+    .contact-form {
+      background: rgba(15, 23, 42, 0.97);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-soft);
+      padding: 1.3rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      margin-bottom: 0.8rem;
+      font-size: 0.85rem;
+    }
+
+    .form-field label {
+      color: var(--text-muted);
+    }
+
+    .form-field input,
+    .form-field textarea {
+      background: #020617;
+      border-radius: 0.9rem;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      padding: 0.6rem 0.8rem;
+      color: var(--text-main);
+      font-size: 0.85rem;
+      resize: vertical;
+    }
+
+    .form-field input:focus,
+    .form-field textarea:focus {
+      outline: none;
+      border-color: rgba(129, 140, 248, 0.95);
+      box-shadow: 0 0 0 1px rgba(129, 140, 248, 0.7);
+    }
+
+    .form-helper {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    footer {
+      padding: 1.2rem 0 1.6rem;
+      border-top: 1px solid rgba(148, 163, 184, 0.35);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 3rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .footer-inner a {
+      color: var(--text-muted);
+    }
+
+    .footer-inner a:hover {
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <header>
+    <div class="wrapper nav">
+      <div class="nav-brand">
+        <div class="nav-logo">BN</div>
+        <div>Billa Nikila</div>
+      </div>
+
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#achievements">Achievements</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <a href="#contact" class="nav-cta">
+        Let’s talk ✉️
+      </a>
+
+      <div class="nav-toggle" id="navToggle">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <!-- Mobile Nav -->
+    <div class="mobile-nav" id="mobileNav">
+      <div class="mobile-nav-inner">
+        <a href="#about" class="mobile-link">About</a>
+        <a href="#experience" class="mobile-link">Experience</a>
+        <a href="#projects" class="mobile-link">Projects</a>
+        <a href="#skills" class="mobile-link">Skills</a>
+        <a href="#achievements" class="mobile-link">Achievements</a>
+        <a href="#contact" class="mobile-link">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="wrapper hero-inner">
+        <div>
+          <div class="hero-badge">
+            <div class="hero-badge-dot"></div>
+            <span>Actively looking for SDE / Frontend roles</span>
+          </div>
+
+          <h1 class="hero-title">
+            Hi, I’m <span>Billa Nikila</span> 👋
+          </h1>
+
+          <p class="hero-tagline">
+            B.Tech <strong>Engineering Physics</strong> at <strong>IIT Hyderabad (2026)</strong>, working as a
+            <strong>frontend-leaning Software Development Engineer</strong> with experience in
+            <strong>React, Qt/QML, C++17, and data-driven Python pipelines</strong> across automotive and analytical projects.
+          </p>
+
+          <div class="hero-actions">
+            <!-- TODO: Update href with your actual resume link -->
+            <a class="btn-primary" href="https://drive.google.com/file/d/1H2rMtJH9nfG_J0dyDuGHpeI71gVh8RlT/view?usp=sharing" target="_blank" rel="noopener">
+              Download Resume ⬇️
+            </a>
+            <!-- TODO: Update GitHub link -->
+            <a class="btn-ghost" href="https://github.com/Nikila8777" target="_blank" rel="noopener">
+              View GitHub ↗
+            </a>
+          </div>
+
+          <div class="hero-meta">
+            <div>
+              <span>Software Dev Intern</span>
+              People Tech, 2024
+            </div>
+            <div>
+              <span>CS & Math Core</span>
+              DSA, DBMS, AI, Stats
+            </div>
+            <div>
+              <span>Frontend & QML</span>
+              Dashboards & UI flows
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-avatar-card">
+          <div class="hero-avatar-circle">
+            <div class="hero-avatar-inner">
+              <!-- Initials – replace with photo if you want -->
+              BN
+            </div>
+          </div>
+          <div class="hero-avatar-tag">
+            Hyderabad, India · GMT+5:30
+          </div>
+          <div class="hero-avatar-footer">
+            <div>
+              <strong>Current Focus</strong><br />
+              Frontend & QML dashboards<br />
+              DSA for SDE roles
+            </div>
+            <div>
+              <strong>Tech that I love</strong><br />
+              React · QML · C++17<br />
+              Python · Cloud & ML
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="wrapper">
+        <div class="section-subtitle">About</div>
+        <h2 class="section-title">Who am I?</h2>
+        <p class="section-description">
+          I’m a B.Tech Engineering Physics student at IIT Hyderabad (batch of 2026) who enjoys
+          building clean, responsive interfaces and reliable backends. My work spans
+          <strong>automotive software</strong>, <strong>interactive dashboards</strong>, and
+          <strong>data-driven analysis</strong> using C++, Python, React, and QML.
+        </p>
+
+        <div class="about-grid">
+          <div class="card">
+            <h3>Quick intro</h3>
+            <p>
+              During my Software Development Internship at People Tech, I worked on
+              <strong>automotive software</strong> within the <strong>AUTOSAR Adaptive</strong> ecosystem,
+              building <strong>thread-safe C++ components</strong> and <strong>dynamic QML dashboards</strong>.
+              I enjoy combining engineering thinking with UI sense – making systems
+              both robust and pleasant to use.
+            </p>
+
+            <div class="about-highlight-grid">
+              <div class="about-chip">
+                <span>Education</span>
+                B.Tech Engineering Physics, IIT Hyderabad<br />
+                CGPA: 7.03 · 2022–2026
+              </div>
+              <div class="about-chip">
+                <span>Core CS/Math</span>
+                Data Structures & Algorithms, DBMS, Data Science Analysis, Introduction to AI,
+                Probability, Linear Algebra, Calculus, Differential Equations.
+              </div>
+              <div class="about-chip">
+                <span>What I enjoy</span>
+                Turning problem statements into working prototypes, iterating on UI, and
+                analysing data to find meaningful patterns.
+              </div>
+              <div class="about-chip">
+                <span>Soft skills</span>
+                Problem-solving, collaboration, communication, and adaptability in fast-paced team settings.
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Snapshot</h3>
+            <p style="margin-bottom:0.5rem;">
+              A few things that describe me well:
+            </p>
+            <span class="badge-pill">Top 1% JEE Advanced admit</span>
+            <span class="badge-pill">Frontend & QML dashboards</span>
+            <span class="badge-pill">Strong math & statistics base</span>
+            <span class="badge-pill">Hands-on ML & MCMC pipelines</span>
+            <span class="badge-pill">Cloud (AWS & Azure basics)</span>
+            <span class="badge-pill">Comfortable with Git & team workflows</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <div class="wrapper">
+        <div class="section-subtitle">Experience</div>
+        <h2 class="section-title">What I’ve worked on</h2>
+        <p class="section-description">
+          I’ve worked as a Software Development Intern on automotive systems, and on academic projects
+          involving unsupervised learning and probabilistic signal detection.
+        </p>
+
+        <div class="card">
+          <div class="timeline-item">
+            <div class="timeline-title">Software Development Intern · People Tech</div>
+            <div class="timeline-meta">Hyderabad · June 2024 – August 2024</div>
+            <ul class="timeline-list">
+              <li>
+                Built a robust <strong>Tire Pressure Monitoring System</strong> in C++17 using
+                <strong>std::atomic</strong> and <strong>std::mutex</strong> within AUTOSAR ARA,
+                enabling thread-safe real-time simulation for four tire sensors.
+              </li>
+              <li>
+                Developed a dynamic <strong>Software-Defined Vehicle (SDV) infotainment dashboard</strong>
+                in <strong>Qt QML</strong> using GridLayout and Repeater with color-changing temperature indicators,
+                speedometer and fuel gauges, improving signal visualization efficiency by ~40%.
+              </li>
+              <li>
+                Automated <strong>ARA-compliant C++ interfaces</strong> from Franca IDL using CMake,
+                reducing integration time by ~50% for tire pressure signals in the AUTOSAR Adaptive Platform.
+              </li>
+              <li>
+                Collaborated with the Systems Architecture Analysis Group to validate the prototype and
+                contributed to a <strong>published report</strong> highlighting its suitability for both rapid
+                prototyping and production-grade systems.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="wrapper">
+        <div class="section-subtitle">Projects</div>
+        <h2 class="section-title">Things I’ve built & explored</h2>
+        <p class="section-description">
+          A mix of frontend, automotive and data-driven projects that reflect how I think about UI,
+          reliability and analysis. Links are placeholders – I’ll update them once repos are public.
+        </p>
+
+        <div class="projects-grid">
+          <!-- PROJECT 1 -->
+          <article class="project-card">
+            <div class="project-thumb">
+              AUTOMOTIVE UI
+            </div>
+            <div class="project-body">
+              <div class="project-title">SDV Infotainment Dashboard</div>
+              <p>
+                Interactive software-defined vehicle dashboard in <strong>Qt QML</strong> featuring
+                temperature indicators, speedometer and fuel/fuel gauges with responsive layouts and animations.
+              </p>
+              <div class="project-tags">
+                <span>Qt</span><span>QML</span><span>C++</span><span>CMake</span>
+              </div>
+              <div class="project-links">
+                <!-- TODO: Update GitHub link -->
+                <a href="https://github.com/Nikila8777" target="_blank" rel="noopener">
+                  GitHub ↗
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 2 -->
+          <article class="project-card">
+            <div class="project-thumb">
+              FULL-STACK
+            </div>
+            <div class="project-body">
+              <div class="project-title">Web-based MP3 Media Player</div>
+              <p>
+                Developed a web MP3 player using <strong>React.js</strong> for the frontend and
+                <strong>Flask</strong> for the backend, focusing on clean UI, smooth controls, and modular components.
+              </p>
+              <div class="project-tags">
+                <span>React.js</span><span>Flask</span><span>JavaScript</span><span>REST API</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/Nikila8777" target="_blank" rel="noopener">
+                  GitHub ↗
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 3 -->
+          <article class="project-card">
+            <div class="project-thumb">
+              UNSUPERVISED ML
+            </div>
+            <div class="project-body">
+              <div class="project-title">Unsupervised Learning for Pattern Discovery</div>
+              <p>
+                Implemented <strong>K-Means clustering</strong> on financial and consumer datasets to discover
+                behavior-based segments for investment and customer profiling using Python.
+              </p>
+              <div class="project-tags">
+                <span>Python</span><span>NumPy</span><span>pandas</span><span>scikit-learn</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/Nikila8777" target="_blank" rel="noopener">
+                  GitHub ↗
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 4 -->
+          <article class="project-card">
+            <div class="project-thumb">
+              DATA VIS
+            </div>
+            <div class="project-body">
+              <div class="project-title">Interactive Clustering Dashboards</div>
+              <p>
+                Built interactive visualizations using <strong>Flutter</strong> and <strong>Plotly</strong>
+                to present clustering outcomes to stakeholders, enabling intuitive exploration of groups and insights.
+              </p>
+              <div class="project-tags">
+                <span>Flutter</span><span>Plotly</span><span>Data visualization</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/Nikila8777" target="_blank" rel="noopener">
+                  GitHub ↗
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 5 -->
+          <article class="project-card">
+            <div class="project-thumb">
+              MCMC & BAYES
+            </div>
+            <div class="project-body">
+              <div class="project-title">Probabilistic Signal Detection in Noisy Time-Series</div>
+              <p>
+                Applied <strong>Bayesian inference</strong> and <strong>MCMC</strong> (emcee)
+                to detect patterns in noisy time-series data, reducing false detections by ~30% compared to grid-search.
+              </p>
+              <div class="project-tags">
+                <span>Python</span><span>emcee</span><span>NumPy</span><span>pandas</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/Nikila8777" target="_blank" rel="noopener">
+                  GitHub ↗
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 6 -->
+          <article class="project-card">
+            <div class="project-thumb">
+              CLOUD & COURSES
+            </div>
+            <div class="project-body">
+              <div class="project-title">Cloud & Semiconductor Learning Milestones</div>
+              <p>
+                Completed <strong>Cloud Computing (NPTEL – Elite + Silver)</strong> and
+                <strong>Semiconductor Technology (SPARC)</strong>, strengthening my understanding of distributed
+                systems and modern semiconductor fabrication.
+              </p>
+              <div class="project-tags">
+                <span>Cloud concepts</span><span>Distributed systems</span><span>Semiconductor tech</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="wrapper">
+        <div class="section-subtitle">Skills</div>
+        <h2 class="section-title">Tech stack & strengths</h2>
+        <p class="section-description">
+          A snapshot of the technologies and concepts I’m comfortable with.
+        </p>
+
+        <div class="skills-grid">
+          <div class="skill-card">
+            <div class="skill-card-title">Programming Languages</div>
+            <div class="skill-tags">
+              <span>C</span><span>C++</span><span>Python</span><span>SQL</span><span>QML</span>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-card-title">Frontend & UI</div>
+            <div class="skill-tags">
+              <span>HTML</span><span>CSS</span><span>JavaScript</span>
+              <span>React.js</span><span>Qt</span><span>QML Dashboards</span>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-card-title">Backend & Frameworks</div>
+            <div class="skill-tags">
+              <span>Flask</span><span>AUTOSAR ARA</span><span>Franca IDL</span><span>CMake</span>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-card-title">Data & ML</div>
+            <div class="skill-tags">
+              <span>pandas</span><span>NumPy</span><span>scikit-learn</span><span>Plotly</span>
+              <span>MCMC (emcee)</span>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-card-title">Tools & Cloud</div>
+            <div class="skill-tags">
+              <span>Git</span><span>GitHub</span><span>VSCode</span>
+              <span>AWS</span><span>Microsoft Azure</span><span>Jupyter Notebook</span>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-card-title">Soft Skills</div>
+            <div class="skill-tags">
+              <span>Problem-solving</span><span>Collaboration</span>
+              <span>Communication</span><span>Adaptability</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACHIEVEMENTS & EXTRACURRICULAR -->
+    <section id="achievements">
+      <div class="wrapper">
+        <div class="section-subtitle">Beyond code</div>
+        <h2 class="section-title">Achievements & Extracurriculars</h2>
+        <p class="section-description">
+          A few highlights that shaped my discipline, confidence, and ability to work with people.
+        </p>
+
+        <div class="two-col-grid">
+          <div class="card">
+            <h3>Academic & Leadership</h3>
+            <ul class="list-compact">
+              <li>
+                Secured admission into <strong>IIT Hyderabad</strong> by ranking in the
+                <strong>top 1% of candidates in JEE Advanced</strong>.
+              </li>
+              <li>
+                <strong>Hospitality and Infrastructure Coordinator</strong> at Milan, IIT Hyderabad (2023) –
+                coordinated guest logistics and experience across a 3-day cultural festival.
+              </li>
+              <li>
+                Consistent engagement with CS-heavy electives and MOOCs in Cloud Computing and AI-related topics.
+              </li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Extracurriculars & Impact</h3>
+            <ul class="list-compact">
+              <li>
+                Exhibited cultural excellence at the <strong>2nd National Traditional Dance Convention</strong>,
+                earning a Telugu Book of Records certificate (2016).
+              </li>
+              <li>
+                Won <strong>Gold Medal</strong> at the State level Karate Do Championship (2016),
+                reflecting discipline and resilience.
+              </li>
+              <li>
+                Led a fundraising initiative to support the <strong>Institute for Visually Impaired and Differently Abled</strong>,
+                successfully raising funds and awareness (2013).
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="wrapper">
+        <div class="section-subtitle">Contact</div>
+        <h2 class="section-title">Let’s connect</h2>
+        <p class="section-description">
+          I’m open to internship and full-time SDE / frontend roles, as well as collaborations on interesting
+          data, UI, or systems projects. The best way to reach me is via email or LinkedIn.
+        </p>
+
+        <div class="contact-grid">
+          <div class="card">
+            <ul class="contact-info-list">
+              <li>
+                <span>Email:</span> ep22btech11003@iith.ac.in
+              </li>
+              <li>
+                <span>Phone:</span> +91 63045 79287
+              </li>
+              <li>
+                <span>Location:</span> Hyderabad, India
+              </li>
+              <li>
+                <span>Preferred roles:</span> SDE, Frontend, Full-stack, QML/Qt Developer
+              </li>
+            </ul>
+
+            <div class="social-links">
+              <!-- TODO: Update these links -->
+              <a href="https://github.com/Nikila8777" target="_blank" rel="noopener">
+                GitHub
+              </a>
+              <a href="https://www.linkedin.com/in/nikilabilla21/" target="_blank" rel="noopener">
+                LinkedIn
+              </a>
+              <a href="https://leetcode.com/u/3DZzh3bDJN/" target="_blank" rel="noopener">
+                LeetCode 
+              </a>
+              <a href="https://drive.google.com/file/d/1H2rMtJH9nfG_J0dyDuGHpeI71gVh8RlT/view?usp=sharing" target="_blank" rel="noopener">
+                Resume (PDF)
+              </a>
+            </div>
+          </div>
+
+          <form class="contact-form" onsubmit="handleForm(event)">
+            <div class="form-field">
+              <label for="name">Name</label>
+              <input id="name" type="text" placeholder="Your name" required />
+            </div>
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input id="email" type="email" placeholder="you@example.com" required />
+            </div>
+            <div class="form-field">
+              <label for="message">Message</label>
+              <textarea id="message" rows="4" placeholder="Tell me a bit about what you’d like to work on..." required></textarea>
+              <div class="form-helper">
+                This form is a front-end demo. You can connect it to a service like Formspree, EmailJS, or your own backend to receive messages.
+              </div>
+            </div>
+            <button type="submit" class="btn-primary">
+              Send Message ✉️
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrapper footer-inner">
+      <div>© <span id="year"></span> Billa Nikila. All rights reserved.</div>
+      <div>Designed & coded by me with ❤️ using HTML, CSS & JS.</div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    const navToggle = document.getElementById("navToggle");
+    const mobileNav = document.getElementById("mobileNav");
+    const mobileLinks = document.querySelectorAll(".mobile-link");
+
+    navToggle.addEventListener("click", () => {
+      mobileNav.classList.toggle("open");
+    });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener("click", () => {
+        mobileNav.classList.remove("open");
+      });
+    });
+
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Simple demo form handler
+    function handleForm(e) {
+      e.preventDefault();
+      alert("Thanks for reaching out! On a deployed version, this form would send your message via email or an API.");
+      e.target.reset();
+    }
+  </script>
+</body>
+</html>
